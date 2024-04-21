@@ -1,5 +1,8 @@
 from django.urls import path
-
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from api import views
 
 urlpatterns = [
@@ -14,6 +17,9 @@ urlpatterns = [
     path('brands/<int:brand_id>/products/<int:product_id>/', views.brand_product_detail,
          name='brand_product_detail'),  # GET
     path('products/', views.product_list, name='product_list'),  # GET, POST
-    path('products/<int:id>/', views.product_detail, name='product_detail')  # GET, PUT, DELETE
+    path('products/<int:id>/', views.product_detail, name='product_detail'),  # GET, PUT, DELETE
+
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Tokens
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]

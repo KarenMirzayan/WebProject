@@ -18,3 +18,28 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'name', 'price', 'image', 'discount', 'category', 'brand')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password']
+        extra_kwargs = {'password': {'write_only': True}}  # Make password write-only
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
+
+#
+# class CartItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = CartItem
+#         fields = ('id', 'product', 'quantity')
+#
+#
+# class CartSerializer(serializers.ModelSerializer):
+#     products = CartItemSerializer(many=True, read_only=True)
+#
+#     class Meta:
+#         model = Cart
+#         fields = ('id', 'user', 'products')

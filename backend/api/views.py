@@ -1,45 +1,57 @@
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import CategorySerializer, BrandSerializer, ProductSerializer
+from rest_framework.views import APIView
+
+from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, UserSerializer
 from .models import Category, Brand, Product
 
 
-@api_view(['GET', 'POST'])
-def category_list(request):
-    if request.method == 'GET':
+class CategoryList(APIView):
+    def get(self, request):
         categories = Category.objects.all()
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
+
+    def post(self, request):
         serializer = CategorySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=400)
-
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def category_detail(request, id):
-    try:
-        category = Category.objects.get(pk=id)
-    except Category.DoesNotExist as e:
-        return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = CategorySerializer(category)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = CategorySerializer(category, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
+
+
+class CategoryDetail(APIView):
+    def get_object(self, id):
         try:
+            return Category.objects.get(pk=id)
+        except Category.DoesNotExist:
+            return None
+
+    def get(self, request, id):
+        category = self.get_object(id)
+        if category is not None:
+            serializer = CategorySerializer(category)
+            return Response(serializer.data)
+        return Response({"error": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    def put(self, request, id):
+        category = self.get_object(id)
+        if category is not None:
+            serializer = CategorySerializer(category, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        category = self.get_object(id)
+        if category is not None:
             category.delete()
             return Response({'deleted': True})
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])
@@ -61,41 +73,50 @@ def category_product_detail(request, category_id, product_id):
         return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
-def brand_list(request):
-    if request.method == 'GET':
+class BrandList(APIView):
+    def get(self, request):
         brands = Brand.objects.all()
         serializer = BrandSerializer(brands, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
+
+    def post(self, request):
         serializer = BrandSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=400)
-
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def brand_detail(request, id):
-    try:
-        brand = Brand.objects.get(pk=id)
-    except Brand.DoesNotExist as e:
-        return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = BrandSerializer(brand)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = BrandSerializer(brand, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
+
+
+class BrandDetail(APIView):
+    def get_object(self, id):
         try:
+            return Brand.objects.get(pk=id)
+        except Brand.DoesNotExist:
+            return None
+
+    def get(self, request, id):
+        brand = self.get_object(id)
+        if brand is not None:
+            serializer = BrandSerializer(brand)
+            return Response(serializer.data)
+        return Response({"error": "Brand not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    def put(self, request, id):
+        brand = self.get_object(id)
+        if brand is not None:
+            serializer = BrandSerializer(brand, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Brand not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        brand = self.get_object(id)
+        if brand is not None:
             brand.delete()
             return Response({'deleted': True})
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({"error": "Brand not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])
@@ -147,3 +168,86 @@ def product_detail(request, id):
             return Response({"deleted": True}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET', 'PUT'])
+def user_detail(request, id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+# @api_view(['GET'])
+# def view_cart(request):
+#     user = request.user
+#     try:
+#         cart = Cart.objects.get(user=user)
+#     except Cart.DoesNotExist:
+#         return Response({"message": "Cart not found"}, status=status.HTTP_404_NOT_FOUND)
+#
+#     serializer = CartSerializer(cart)
+#     return Response(serializer.data)
+#
+#
+# @api_view(['POST'])
+# def add_to_cart(request):
+#     user = request.user
+#     product_id = request.data.get('product_id')
+#     quantity = int(request.data.get('quantity', 1))
+#
+#     try:
+#         product = Product.objects.get(pk=product_id)
+#     except Product.DoesNotExist:
+#         return Response({"message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+#
+#     cart, created = Cart.objects.get_or_create(user=user)
+#     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+#
+#     if not item_created:
+#         cart_item.quantity += quantity
+#         cart_item.save()
+#     else:
+#         cart_item.quantity = quantity
+#         cart_item.save()
+#
+#     serializer = CartSerializer(cart)
+#     return Response(serializer.data)
+#
+#
+# @api_view(['PUT'])
+# def update_cart_item(request, cart_item_id):
+#     try:
+#         cart_item = CartItem.objects.get(pk=cart_item_id)
+#     except CartItem.DoesNotExist:
+#         return Response({"message": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
+#
+#     serializer = CartItemSerializer(cart_item, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
+#
+# @api_view(['DELETE'])
+# def remove_from_cart(request, cart_item_id):
+#     try:
+#         cart_item = CartItem.objects.get(pk=cart_item_id)
+#     except CartItem.DoesNotExist:
+#         return Response({"message": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
+#
+#     cart_item.delete()
+#     return Response({"message": "Cart item removed successfully"}, status=status.HTTP_204_NO_CONTENT)

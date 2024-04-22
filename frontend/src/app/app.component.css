@@ -50,12 +50,3 @@ footer {
   list-style: none;
   margin-bottom: 5px;
 }
-
-.section a:any-link {
-  text-decoration: none;
-  color: black;
-}
-
-.section a:hover {
-  text-decoration: underline;
-}

@@ -11,6 +11,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ElsePageComponent } from './else-page/else-page.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { BrandListComponent } from './brand-list/brand-list.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
+import { BrandProductsComponent } from './brand-products/brand-products.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,11 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     HomeComponent,
     AccountComponent,
     WishlistComponent,
+    ElsePageComponent,
+    CategoriesListComponent,
+    BrandListComponent,
+    CategoryProductsComponent,
+    BrandProductsComponent,
   ],
   imports: [
     CommonModule,

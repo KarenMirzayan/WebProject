@@ -26,4 +26,7 @@ export class AppComponent {
   goToCart() {
     return this.router.navigateByUrl('/cart');
   }
+  goToElsePage() {
+    return this.router.navigateByUrl('/elsepage');
+  }
 }

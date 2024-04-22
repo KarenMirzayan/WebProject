@@ -24,21 +24,75 @@
   />
 </header>
 
-<div class="container">
+<div class="container-main">
   <router-outlet></router-outlet>
 </div>
+
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6"><a routerLink="../home">Silver Pear</a></div>
-      <div class="col-md-6">
-        <ul class="footer-nav">
-          <li><a href="#">О нас</a></li>
-          <li><a href="#">Условия использования</a></li>
-          <li><a href="#">Контакты</a></li>
-        </ul>
-      </div>
+  <div class="home-link" (click)="goToHome()">Silver Pear</div>
+
+  <div class="row">
+    <div class="section">
+      <h2><a href="#">круглосуточный телефон call-центра</a></h2>
+      <p><a href="tel:87774346622">8 777 434 66 22</a></p>
     </div>
-    <p>&copy; 2024 Silver Pear</p>
+
+    <div class="section">
+      <h2><a href="#">о нас</a></h2>
+      <ul>
+        <li><a href="#">политика обработки персональных данных</a></li>
+        <li><a href="#">документы сайта</a></li>
+        <li><a href="#">вакансии</a></li>
+        <li><a href="#">наши магазины</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><a href="#">клиентам</a></h2>
+      <ul>
+        <li><a href="#">доставка и оплата</a></li>
+        <li><a href="#">возврат товара</a></li>
+        <li><a href="#">бонусная программа</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><a href="#">контакты</a></h2>
+      <ul>
+        <li><a href="#">общие контакты</a></li>
+        <li><a href="#">отдел маркетинга и рекламы</a></li>
+        <li><a href="#">для предложений по ассортименту</a></li>
+      </ul>
+    </div>
   </div>
+
+  <div class="row2">
+    <a href="#" class="social-icon"
+      ><img
+        src="https://seeklogo.com/images/T/telegram-minimal-logo-2F6E632BF2-seeklogo.com.png"
+        alt="Telegram"
+    /></a>
+    <a href="#" class="social-icon"
+      ><img
+        src="https://static-00.iconduck.com/assets.00/whatsapp-icon-509x512-c9csi2fs.png"
+        alt="WhatsApp"
+    /></a>
+    <a href="#" class="social-icon"
+      ><img
+        src="https://pngbuy.com/wp-content/uploads/2023/06/Instagram-PNGinstagram-icon-png.png"
+        alt="Instagram"
+    /></a>
+    <a href="#" class="social-icon" id="Download"
+      ><img
+        src="https://www.freepnglogos.com/uploads/app-store-logo-png/google-play-and-apple-app-store-logos-22.png"
+        alt="Download on GooglePlay and Appstore"
+    /></a>
+  </div>
+
+  <div class="row3">
+    Project made by Karen, Aruzhan and Aisana for web development course
+    2023-2024.
+  </div>
+
+  <p>&copy; 2024 Silver Pear</p>
 </footer>

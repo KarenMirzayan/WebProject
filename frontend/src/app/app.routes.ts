@@ -25,12 +25,7 @@ export const routes: Routes = [
   // { path: '**', component: ErrorComponent },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    CommonModule,
-    MatSidenavModule,
-  ],
+  imports: [RouterModule.forRoot(routes), HttpClientModule, CommonModule],
   exports: [RouterModule],
   providers: [ApiService],
 })

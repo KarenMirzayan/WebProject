@@ -1,0 +1,7 @@
+<div
+  *ngFor="let brand of brands"
+  class="brand-holder"
+  (click)="viewBrandProducts(brand.id)"
+>
+  <h3>{{ brand.name }}</h3>
+</div>

@@ -45,13 +45,18 @@ export const routes: Routes = [
   { path: 'brands', component: BrandListComponent },
   { path: 'brands/:brand_id/products', component: BrandProductsComponent },
   { path: 'products', component: ProductListComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'products/:product_id', component: ProductDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },
-  { path: 'search', component:SearchComponent}
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes), HttpClientModule, CommonModule, FormsModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+  ],
   exports: [RouterModule],
   providers: [ApiService],
 })

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand, Category, Product } from './interfaces';
+import { SearchComponent } from './search/search.component';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +58,5 @@ export class ApiService {
     return this.http.get<Product>(`${this.apiUrl}/products/${id}/`);
   }
 
-  
+ 
 }

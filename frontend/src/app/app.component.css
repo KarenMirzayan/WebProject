@@ -1,7 +1,15 @@
 * {
   font-family: "Courier New", Courier, monospace;
 }
-
+header:hover{
+  opacity:0.9;
+  cursor:pointer;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 footer {
   background-color: rgb(209, 200, 200);
 }
@@ -49,4 +57,11 @@ footer {
 .section li {
   list-style: none;
   margin-bottom: 5px;
+}
+
+.main{
+  margin:0 auto;
+}
+.else, .wishlist{
+  margin-right:30px
 }

@@ -56,4 +56,6 @@ export class ApiService {
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/products/${id}/`);
   }
+
+  
 }

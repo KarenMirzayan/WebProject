@@ -23,6 +23,6 @@ export class BrandListComponent implements OnInit {
   }
 
   viewBrandProducts(brandId: number): void {
-    this.router.navigate(['/brands', brandId, '/products']);
+    this.router.navigate(['/brands', brandId, 'products']);
   }
 }

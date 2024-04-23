@@ -1,5 +1,8 @@
-.category-holder:hover{
-    opacity:0.9;
-    cursor:pointer;
+.category-holder:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
 
+.category-holder {
+  margin: 40px 80px;
 }

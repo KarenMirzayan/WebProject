@@ -1,1 +1,11 @@
-<p>brand-products works!</p>
+<div
+  *ngFor="let product of products"
+  class="category-products-holder"
+  (click)="viewProductDetails(product.id)"
+>
+  <img src="{{ product.image }}" alt="product-image" width="200px" />
+  <h3>{{ product.name }}</h3>
+  <p>Цена: {{ product.price }}</p>
+  <p>СКИДКА: {{ product.discount }}</p>
+  <p>{{ product.brand.name }}</p>
+</div>

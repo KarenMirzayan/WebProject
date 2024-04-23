@@ -18,9 +18,12 @@ urlpatterns = [
          name='brand_product_detail'),  # GET
     path('products/', views.product_list, name='product_list'),  # GET, POST
     path('products/<int:id>/', views.product_detail, name='product_detail'),  # GET, PUT, DELETE
-    path('users/<int:id>/', views.user_detail, name='user_detail'),  # GET, PUT
 
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Tokens
-    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('register', views.user_register, name='user_register'),
+    path('users/<int:id>', views.user_detail, name='user_detail'),  # GET, PUT
+    path('users/<str:username>', views.user_get_by_username, name='user_get_by_username'),
+
+    path('login', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Tokens
+    path('refresh', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]

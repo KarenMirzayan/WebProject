@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand, Category, Product } from './interfaces';
-import { SearchComponent } from './search/search.component';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root',
@@ -58,5 +59,15 @@ export class ApiService {
     return this.http.get<Product>(`${this.apiUrl}/products/${id}/`);
   }
 
- 
+  getProductsBySearch(searchTerm: string): Observable<Product[]> {
+    return this.getProducts().pipe(
+      map(products => {
+        if (searchTerm) {
+          return products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        } else {
+          return products;
+        }
+      })
+    );
+  }
 }

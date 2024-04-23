@@ -21,6 +21,7 @@ import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
+import { SearchpageComponent } from './searchpage/searchpage.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +38,14 @@ import { SearchComponent } from './search/search.component';
     BrandProductsComponent,
     ErrorComponent,
     SearchComponent,
+    SearchpageComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

@@ -30,16 +30,16 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-#
-# class CartItemSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CartItem
-#         fields = ('id', 'product', 'quantity')
-#
-#
-# class CartSerializer(serializers.ModelSerializer):
-#     products = CartItemSerializer(many=True, read_only=True)
-#
-#     class Meta:
-#         model = Cart
-#         fields = ('id', 'user', 'products')
+
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ('id', 'product', 'quantity')
+
+
+class CartSerializer(serializers.ModelSerializer):
+    products = CartItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cart
+        fields = ('id', 'user', 'products')

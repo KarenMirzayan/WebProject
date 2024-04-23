@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  BASE_URL = 'http://localhost:8000';
+  BASE_URL = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
   register(username: string, password: string, email: string): any {
-    return this.http.post<User>(`${this.BASE_URL}/api/register`, {
+    return this.http.post<User>(`${this.BASE_URL}/register`, {
       username,
       password,
       email,
@@ -20,13 +20,13 @@ export class UserService {
   }
 
   login(username: string, password: string): Observable<Token> {
-    return this.http.post<Token>(`${this.BASE_URL}/api/login`, {
+    return this.http.post<Token>(`${this.BASE_URL}/login`, {
       username,
       password,
     });
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>(`${this.BASE_URL}/api/users/${username}`);
+    return this.http.get<User>(`${this.BASE_URL}/users/${username}`);
   }
 }

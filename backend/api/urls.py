@@ -26,4 +26,8 @@ urlpatterns = [
     path('login', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Tokens
     path('refresh', TokenRefreshView.as_view(), name='token_refresh'),
 
+    path('cart/', views.view_cart, name='view_cart'),
+    path('cart/add/', views.add_to_cart, name='add_to_cart'),
+    path('cart/item/<int:id>/', views.update_cart_item, name='update_cart_item'),
+    path('cart/item/<int:id>/remove/', views.remove_from_cart, name='remove_from_cart'),
 ]

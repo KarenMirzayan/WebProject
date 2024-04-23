@@ -17,6 +17,8 @@ import { BrandListComponent } from './brand-list/brand-list.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { BrandProductsComponent } from './brand-products/brand-products.component';
 import { ErrorComponent } from './error/error.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ErrorComponent } from './error/error.component';
     AccountComponent,
     WishlistComponent,
     ElsePageComponent,
+    LoginComponent,
+    RegisterComponent,
     CategoriesListComponent,
     BrandListComponent,
     CategoryProductsComponent,

@@ -1,1 +1,9 @@
-<p>product-list works!</p>
+<div
+  *ngFor="let product of products"
+  class="product-holder"
+  (click)="viewProductDetails(product.id)"
+>
+  <img src="{{ product.image }}" alt="image" width="200px" />
+  <h3>{{ product.name }}</h3>
+  <p>{{ product.price }}</p>
+</div>

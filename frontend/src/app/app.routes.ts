@@ -10,14 +10,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { ElsePageComponent } from './else-page/else-page.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { BrandListComponent } from './brand-list/brand-list.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { BrandProductsComponent } from './brand-products/brand-products.component';
 import { ErrorComponent } from './error/error.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,10 +27,13 @@ export const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: 'categories', component: CategoryListComponent },
-  // { path: 'categories/:category_id/products', component: CategoryProductsComponent },
-  // { path: 'brands', component: BrandListComponent },
-  // { path: 'brands/:brand_id/products', component: BrandProductsComponent },
+  { path: 'categories', component: CategoriesListComponent },
+  {
+    path: 'categories/:category_id/products',
+    component: CategoryProductsComponent,
+  },
+  { path: 'brands', component: BrandListComponent },
+  { path: 'brands/:brand_id/products', component: BrandProductsComponent },
   { path: 'elsepage', component: ElsePageComponent },
   { path: 'categories', component: CategoriesListComponent },
   {
@@ -37,8 +42,8 @@ export const routes: Routes = [
   },
   { path: 'brands', component: BrandListComponent },
   { path: 'brands/:brand_id/products', component: BrandProductsComponent },
-  // { path: 'products', component: ProductListComponent },
-  // { path: 'products/:product_id', component: ProductDetailComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: 'products/:product_id', component: ProductDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },
 ];

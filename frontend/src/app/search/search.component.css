@@ -6,8 +6,8 @@ div{
 }
 
 div input{
-    height: 3rem;
-    width:20rem;
+    height: 0.62rem;
+    width:10rem;
     border-radius:10rem 0 0 10rem;
     border:none;
     background-color:#f1f1f1;
@@ -18,7 +18,7 @@ div input{
 }
 
 div button{
-    background-color:#8b66b2;
+    background-color:rgb(185, 176, 176);;
     color:white;
     height:3rem;
     width:5rem;

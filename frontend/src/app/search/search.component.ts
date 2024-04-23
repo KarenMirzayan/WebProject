@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
-  searchTerm:String = " ";
+  searchTerm:String = "";
   constructor(private route:ActivatedRoute, private router:Router){}
   ngOnInit(): void{
       this.route.params.subscribe(params=>{
@@ -24,5 +24,5 @@ export class SearchComponent implements OnInit {
     if(this.searchTerm)
     this.router.navigateByUrl('/search/' + this.searchTerm);
   }
-
+  
 }

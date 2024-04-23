@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { ApiService } from './api.service';
 
@@ -19,6 +20,7 @@ import { BrandProductsComponent } from './brand-products/brand-products.componen
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,14 @@ import { RegisterComponent } from './register/register.component';
     CategoryProductsComponent,
     BrandProductsComponent,
     ErrorComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

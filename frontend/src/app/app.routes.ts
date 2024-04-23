@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 // import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { ApiService } from './api.service';
@@ -20,6 +21,7 @@ import { BrandProductsComponent } from './brand-products/brand-products.componen
 import { ErrorComponent } from './error/error.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -46,9 +48,10 @@ export const routes: Routes = [
   { path: 'products/:product_id', component: ProductDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },
+  { path: 'search', component:SearchComponent}
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes), HttpClientModule, CommonModule],
+  imports: [RouterModule.forRoot(routes), HttpClientModule, CommonModule, FormsModule],
   exports: [RouterModule],
   providers: [ApiService],
 })

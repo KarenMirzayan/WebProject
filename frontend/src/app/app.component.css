@@ -62,6 +62,7 @@ footer {
 .main{
   margin:0 auto;
 }
-.else, .wishlist{
-  margin-right:30px
+ .wishlist, .search, .account{
+  margin-right:30px;
+  margin-left:5px;
 }

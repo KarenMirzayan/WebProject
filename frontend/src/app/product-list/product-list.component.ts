@@ -23,4 +23,10 @@ export class ProductListComponent implements OnInit {
   viewProductDetails(productId: number) {
     this.router.navigate(['/products', productId]);
   }
+
+  getAllProductsBySearchTerm(products: Product[], searchTerm: string): Product[] {
+    return products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 }

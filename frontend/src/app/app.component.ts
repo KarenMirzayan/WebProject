@@ -29,4 +29,8 @@ export class AppComponent {
   goToElsePage() {
     return this.router.navigateByUrl('/elsepage');
   }
+
+  goToSearchPage(){
+    return this.router.navigateByUrl('/search');
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import { Token, User } from './models';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,21 @@ export class UserService {
       username,
       password,
     });
+  }
+
+  logout() {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("user");
+  }
+
+  refreshToken(): Observable<string>{
+    return this.http.post<string>(`${this.BASE_URL}/refresh`, {"refresh": localStorage.getItem("refresh")})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => {return error});
+        })
+      );
   }
 
   getUserByUsername(username: string): Observable<User> {

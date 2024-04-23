@@ -32,14 +32,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CartItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+
     class Meta:
         model = CartItem
-        fields = ('id', 'product', 'quantity')
-
-
-class CartSerializer(serializers.ModelSerializer):
-    products = CartItemSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Cart
-        fields = ('id', 'user', 'products')
+        fields = ('id', 'product', 'quantity', 'user')

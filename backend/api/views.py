@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, UserSerializer, CartSerializer, \
-    CartItemSerializer
-from .models import Category, Brand, Product, Cart, CartItem
+from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, UserSerializer, CartItemSerializer
+from .models import Category, Brand, Product, CartItem
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
@@ -214,17 +214,16 @@ def user_get_by_username(request, username):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated, ])
+@permission_classes([IsAuthenticated])
 def view_cart(request):
     user = request.user
-    cart, created = Cart.objects.get_or_create(user=user)
-
-    serializer = CartSerializer(cart)
+    cart_items = CartItem.objects.filter(user=user)
+    serializer = CartItemSerializer(cart_items, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated, ])
+@permission_classes([IsAuthenticated])
 def add_to_cart(request):
     user = request.user
     product_id = request.data.get('product_id')
@@ -235,37 +234,40 @@ def add_to_cart(request):
     except Product.DoesNotExist:
         return Response({"message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
-    cart, created = Cart.objects.get_or_create(user=user)
-    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
-
-    if not item_created:
+    cart_item, created = CartItem.objects.get_or_create(user=user, product=product)
+    if not created:
         cart_item.quantity += quantity
-        cart_item.save()
     else:
         cart_item.quantity = quantity
-        cart_item.save()
+    cart_item.save()
 
-    serializer = CartSerializer(cart)
-    return Response(serializer.data)
+    serializer = CartItemSerializer(cart_item)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated, ])
-def update_cart_item(request, cart_item_id):
+@permission_classes([IsAuthenticated])
+def update_cart_item(request, id):
     try:
-        cart_item = CartItem.objects.get(pk=cart_item_id)
+        cart_item = CartItem.objects.get(pk=id)
     except CartItem.DoesNotExist:
         return Response({"message": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
+    quantity = request.data.get('quantity', 1)
+    try:
+        quantity = int(quantity)
+        if quantity <= 0:
+            raise ValueError("Quantity must be a positive integer")
+    except ValueError:
+        raise ValidationError("Quantity must be a positive integer")
 
-    serializer = CartItemSerializer(cart_item, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    cart_item.quantity = quantity
+    cart_item.save()
+    serializer = CartItemSerializer(cart_item)
+    return Response(serializer.data)
 
 
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated, ])
+@permission_classes([IsAuthenticated])
 def remove_from_cart(request, cart_item_id):
     try:
         cart_item = CartItem.objects.get(pk=cart_item_id)

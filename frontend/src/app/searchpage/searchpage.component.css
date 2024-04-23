@@ -1,0 +1,38 @@
+li a {
+    overflow: hidden;
+    margin: 0 30px 30px 0;
+    font-family: "Courier New", Courier, monospace; 
+    font-weight: bold;
+    text-align: justify;
+}
+.links {
+    display: flex;
+    margin: 20px 20px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+}
+ul .discount{
+    color:red;
+}
+
+
+li a img {
+    height: 30rem;
+    width: 10rem;
+    border: 1px solid whitesmoke;
+    border-radius: 1rem;
+    margin: 10rem;
+    flex-direction: column;
+}
+
+li a:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}

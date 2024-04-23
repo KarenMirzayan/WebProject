@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces';
 import { ApiService } from '../api.service';
-import { Router } from '@angular/router';
-
+import { Router,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -14,7 +13,9 @@ import { Router } from '@angular/router';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private activatedRoute:ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.apiService.getProducts().subscribe((data) => {
@@ -26,12 +27,6 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  getAllProductsBySearchTerm(
-    products: Product[],
-    searchTerm: string
-  ): Product[] {
-    return products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
+
+  
 }

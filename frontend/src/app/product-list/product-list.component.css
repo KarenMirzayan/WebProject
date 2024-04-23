@@ -1,0 +1,16 @@
+.products-holder{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    list-style-type:none;
+    padding:0;
+}
+.products-holder img {
+    height:25rem;
+    width:15rem;
+    border: 1px solid whitesmoke;
+    border-radius:1rem;
+    margin:0.5rem;
+    flex-direction:column;
+  }

@@ -22,6 +22,7 @@ import { ErrorComponent } from './error/error.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SearchComponent } from './search/search.component';
+import { SearchpageComponent } from './searchpage/searchpage.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -46,6 +47,7 @@ export const routes: Routes = [
   { path: 'brands/:brand_id/products', component: BrandProductsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'search', component: SearchComponent },
+  { path:'search/:searchTerm', component:SearchpageComponent},
   { path: 'products/:product_id', component: ProductDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },

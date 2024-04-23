@@ -16,6 +16,7 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { BrandListComponent } from './brand-list/brand-list.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { BrandProductsComponent } from './brand-products/brand-products.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BrandProductsComponent } from './brand-products/brand-products.componen
     BrandListComponent,
     CategoryProductsComponent,
     BrandProductsComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,

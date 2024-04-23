@@ -14,6 +14,7 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { BrandListComponent } from './brand-list/brand-list.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { BrandProductsComponent } from './brand-products/brand-products.component';
+import { ErrorComponent } from './error/error.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,7 +31,7 @@ export const routes: Routes = [
   // { path: 'products', component: ProductListComponent },
   // { path: 'products/:product_id', component: ProductDetailComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', component: ErrorComponent },
+  { path: '**', component: ErrorComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes), HttpClientModule, CommonModule],

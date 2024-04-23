@@ -22,7 +22,7 @@ export class CategoriesListComponent implements OnInit {
     });
   }
 
-  viewCategoryDetails(categoryId: number): void {
-    this.router.navigate(['/categories', categoryId]);
+  viewCategoryProducts(categoryId: number): void {
+    this.router.navigate(['/categories', categoryId, 'products']);
   }
 }

@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css',
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
@@ -24,8 +26,11 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  getAllProductsBySearchTerm(products: Product[], searchTerm: string): Product[] {
-    return products.filter(product =>
+  getAllProductsBySearchTerm(
+    products: Product[],
+    searchTerm: string
+  ): Product[] {
+    return products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }

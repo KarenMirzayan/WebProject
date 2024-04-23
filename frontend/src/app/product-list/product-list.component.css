@@ -13,4 +13,5 @@
     border-radius:1rem;
     margin:0.5rem;
     flex-direction:column;
+    object-fit:cover;
   }

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-brand-products',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './brand-products.component.html',
   styleUrl: './brand-products.component.css',
 })
@@ -22,7 +23,7 @@ export class BrandProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.brandId = params['id'];
+      this.brandId = params['brand_id'];
       this.getBrandProducts(this.brandId);
     });
   }
@@ -31,5 +32,8 @@ export class BrandProductsComponent implements OnInit {
     this.apiService.getBrandProducts(id).subscribe((data) => {
       this.products = data as Product[];
     });
+  }
+  viewProductDetails(id: number) {
+    this.router.navigate(['../../../products', id]);
   }
 }

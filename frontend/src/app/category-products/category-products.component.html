@@ -1,4 +1,8 @@
-<div *ngFor="let product of products" class="category-products-holder">
+<div
+  *ngFor="let product of products"
+  class="category-products-holder"
+  (click)="viewProductDetails(product.id)"
+>
   <img src="{{ product.image }}" alt="product-image" />
   <h3>{{ product.name }}</h3>
   <p>Цена: {{ product.price }}</p>

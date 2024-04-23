@@ -133,7 +133,7 @@ def brand_product_detail(request, brand_id, product_id):
     return Response(serializer.data)
 
 
-@api_view(['GET, POST'])
+@api_view(['GET', 'POST'])
 def product_list(request):
     if request.method == 'GET':
         products = Product.objects.all()

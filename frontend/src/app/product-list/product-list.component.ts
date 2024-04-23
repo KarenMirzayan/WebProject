@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css',
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
@@ -29,6 +31,7 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
+
   getProductsBySearch(searchTerm?:string):void{
       if(searchTerm){
         this.apiService.getProducts()
@@ -39,5 +42,6 @@ export class ProductListComponent implements OnInit {
       else{
         this.apiService.getProducts().subscribe(products => this.products = products);
       }
+
   }
 }

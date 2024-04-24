@@ -37,3 +37,11 @@ class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = ('id', 'product', 'quantity', 'user')
+
+
+class WishlistItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+
+    class Meta:
+        model = WishlistItem
+        fields = ('id', 'product', 'user')

@@ -1,3 +1,20 @@
-<p>wishlist works!</p>
+<div class="wishlist-container">
+  <h2>My Wishlist</h2>
 
-<div class="container"></div>
+  <div *ngIf="wishlistItems.length > 0; else emptyWishlist">
+    <div *ngFor="let item of wishlistItems" class="wishlist-item">
+      <div class="item-info">
+        <img [src]="item.product.image" alt="{{ item.product.name }}" class="item-image">
+        <div class="item-details">
+          <h3>{{ item.product.name }}</h3>
+          <p>Price: {{ item.product.discount ? item.product.price :item.product.price }}</p>
+        </div>
+      </div>
+      <button (click)="removeItem(item.id)" class="remove-button">Remove</button>
+    </div>
+  </div>
+
+  <ng-template #emptyWishlist>
+    <p>Your wishlist is empty.</p>
+  </ng-template>
+</div>

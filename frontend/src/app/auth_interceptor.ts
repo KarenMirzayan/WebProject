@@ -4,11 +4,12 @@ import {catchError, Observable, switchMap, throwError} from "rxjs";
 import {UserService} from "./user.service";
 import {Token} from "./models";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: UserService, private router: Router) {
+  constructor(private authService: UserService, private router: Router, private location: Location) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -33,16 +34,19 @@ export class AuthInterceptor implements HttpInterceptor {
   private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // Handle token refreshing here
     return this.authService.refreshToken().pipe(
-      switchMap((newAccessToken: string) => {
+      switchMap((newAccessToken: any) => {
         const newReq = req.clone({
-          headers: req.headers.set('Authorization', `Bearer ${newAccessToken}`)
+          headers: req.headers.set('Authorization', `Bearer ${newAccessToken.access}`)
         });
-        localStorage.setItem("access", newAccessToken);
+        localStorage.setItem("access", newAccessToken.access);
         return next.handle(newReq);
       }),
       catchError((error: any) => {
         this.authService.logout();
-        this.router.navigate(['/login']);
+        if (this.location.getState() !== null)
+          this.location.back()
+        else
+          this.router.navigate(['/login']);
         return throwError(() => { return error});
       })
     );

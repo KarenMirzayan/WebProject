@@ -32,8 +32,8 @@ export class UserService {
     localStorage.removeItem("user");
   }
 
-  refreshToken(): Observable<string>{
-    return this.http.post<string>(`${this.BASE_URL}/refresh`, {"refresh": localStorage.getItem("refresh")})
+  refreshToken(): Observable<any>{
+    return this.http.post<any>(`${this.BASE_URL}/refresh`, {"refresh": localStorage.getItem("refresh")})
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => {return error});

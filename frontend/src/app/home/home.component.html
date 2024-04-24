@@ -4,7 +4,7 @@
         <img src="https://2.bp.blogspot.com/-maFze9jjfMk/WArPL-kh9aI/AAAAAAAAPoo/EHcaioEuzrEbXXPTiwoZbfbc8QPcvSqLwCEw/s1600/Dior-Holiday-2016-Splendor-Makeup-Collection-Swatches-Review-FOTD-Photos-1.jpg" >
 </div>
 
-
+<h3>Скидки</h3>
 <div
   *ngFor="let product of products"
   class="product-line"
@@ -13,4 +13,5 @@
   <img src="{{ product.image }}" alt="image" width="200px" />
   <h3>{{ product.name }}</h3>
   <p>{{ product.price }}</p>
+  <p class="discount">{{product.discount}}</p>
 </div> 

@@ -2,7 +2,16 @@
         <img src="https://www.mysavings.com/img/link/large/144171.jpg" >
         <img src="https://lesfacons.com/wp-content/uploads/2022/12/TOM-FORD-BEAUTY-ENIGMATIC-WOODS-FRAGRANCE-TRIO.jpg" >
         <img src="https://2.bp.blogspot.com/-maFze9jjfMk/WArPL-kh9aI/AAAAAAAAPoo/EHcaioEuzrEbXXPTiwoZbfbc8QPcvSqLwCEw/s1600/Dior-Holiday-2016-Splendor-Makeup-Collection-Swatches-Review-FOTD-Photos-1.jpg" >
-  </div>
+</div>
 
-
-   
+<h3>Скидки</h3>
+<div
+  *ngFor="let product of products"
+  class="product-line"
+  (click)="viewProductbyID(product.id)"
+>
+  <img src="{{ product.image }}" alt="image" width="200px" />
+  <h3>{{ product.name }}</h3>
+  <p>{{ product.price }}</p>
+  <p class="discount">{{product.discount}}</p>
+</div> 

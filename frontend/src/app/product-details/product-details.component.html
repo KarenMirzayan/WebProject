@@ -1,7 +1,10 @@
-<div class="category-products-holder">
+<div class="product-holder">
   <img src="{{ product.image }}" alt="product-image" width="200px" />
   <h3>{{ product.name }}</h3>
   <p>Цена: {{ product.price }}</p>
   <p>СКИДКА: {{ product.discount }}</p>
-  <!-- <p>{{ product.brand.name }}</p> -->
+  <div class="buttons">
+    <button class="basket-button">ДОБАВИТЬ В КОРЗИНУ</button>
+    <button class="heart-button" (onclick)="addToWishlist()">&#10084;</button>
+  </div>
 </div>

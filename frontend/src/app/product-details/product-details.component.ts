@@ -35,4 +35,8 @@ export class ProductDetailsComponent implements OnInit {
       this.product = data;
     });
   }
+
+  addToCart() {}
+
+  addToWishlist() {}
 }

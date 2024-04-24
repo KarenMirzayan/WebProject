@@ -30,4 +30,7 @@ urlpatterns = [
     path('cart/add/', views.add_to_cart, name='add_to_cart'),
     path('cart/item/<int:id>/', views.update_cart_item, name='update_cart_item'),
     path('cart/item/<int:id>/remove/', views.remove_from_cart, name='remove_from_cart'),
+
+    path('wishlist/', views.WishlistListView.as_view(), name='wishlist_list'),
+    path('wishlist/<int:product_id>/', views.WishlistDetailView.as_view(), name='wishlist_detail')
 ]

@@ -1,14 +1,19 @@
-<div class="container">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" [(ngModel)]="this.username" required>
+<div class="login-page">
+  <div class="container">
+    <h2>SilverSpear</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Логин</label>
+        <input type="text" id="username" name="username" [(ngModel)]="this.username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" [(ngModel)]="this.password" required>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Вход</button>
+    </form>
+    <div class="register-text">
+      <p>Нет аккаунта? <a [routerLink]="['/register']" id="register">Зарегистрироваться</a> </p>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="this.password" required>
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
+  </div>
 </div>

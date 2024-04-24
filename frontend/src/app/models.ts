@@ -19,3 +19,9 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export interface WishlistItem {
+  id: number;
+  product: Product;
+
+}

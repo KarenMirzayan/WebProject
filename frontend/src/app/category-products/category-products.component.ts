@@ -34,4 +34,8 @@ export class CategoryProductsComponent implements OnInit {
   viewProductDetails(id: number) {
     this.router.navigate(['../../../products', id]);
   }
+
+  addToCart() {}
+
+  addToWishlist() {}
 }

@@ -1,12 +1,14 @@
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, UserSerializer, CartItemSerializer
-from .models import Category, Brand, Product, CartItem
+from .serializers import CategorySerializer, BrandSerializer, ProductSerializer, UserSerializer, CartItemSerializer, \
+    WishlistItemSerializer
+from .models import Category, Brand, Product, CartItem, WishlistItem
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
@@ -276,3 +278,44 @@ def remove_from_cart(request, cart_item_id):
 
     cart_item.delete()
     return Response({"message": "Cart item removed successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class WishlistListView(APIView):
+    permission_classes([IsAuthenticated])
+
+    def get(self, request):
+        user = request.user
+        wishlist_items = WishlistItem.objects.filter(user=user)
+        serializer = WishlistItemSerializer(wishlist_items, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        user = request.user
+        product_id = request.data.get('product_id')
+
+        try:
+            product = Product.objects.get(pk=product_id)
+        except Product.DoesNotExist:
+            return Response({"message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        cart_item, created = CartItem.objects.create(user=user, product=product)
+        cart_item.save()
+
+        serializer = CartItemSerializer(cart_item)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class WishlistDetailView(APIView):
+    permission_classes([IsAuthenticated,])
+
+    def get(self, request, product_id):
+        user = request.user
+        wishlist_item = WishlistItem.objects.get(user=user, product_id=product_id)
+        serializer = WishlistItemSerializer(wishlist_item)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, product_id):
+        user = request.user
+        wishlist_item = WishlistItem.objects.get(user=user, product_id=product_id)
+        wishlist_item.delete()
+        return JsonResponse({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)

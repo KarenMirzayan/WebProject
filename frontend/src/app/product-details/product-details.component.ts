@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../interfaces';
+import { WishlistItem } from '../models';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-product-details',
@@ -18,7 +20,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private wishListService: WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +41,10 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart() {}
 
-  addToWishlist() {}
+  addToWishlist(product: Product): void {
+    const wishlistItem: WishlistItem = { id: product.id, product: product}; 
+    this.wishListService.add_item(wishlistItem).subscribe((addedItem: WishlistItem) => {
+      console.log('Item added to wishlist:', addedItem);
+    });
+  }
 }

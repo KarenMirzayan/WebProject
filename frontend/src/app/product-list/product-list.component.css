@@ -27,6 +27,7 @@ img {
   color: rgb(255, 164, 164);
   margin-top: 20px;
   right: 60%;
+  cursor:pointer;
 }
 
 .basket-button {

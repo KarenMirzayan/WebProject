@@ -21,6 +21,11 @@ export class WishlistComponent implements OnInit {
     this.getItems()
   }
 
+  add_item(item: WishlistItem): void {
+    this.service.add_item(item).subscribe((addedItem: WishlistItem) => {
+      console.log('Item added:', addedItem);
+    });
+  }
 
   getItems(){
     this.service.get_items().subscribe((items: WishlistItem[]) => {

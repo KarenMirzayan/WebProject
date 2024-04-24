@@ -25,5 +25,7 @@ export class HomeComponent implements OnInit {
 
   viewProductbyID(productId: number) {
     this.router.navigate(['/products', productId]);
-  }/*выведу по человечески */
+  }
+
+  addToWishlist() {}
 }

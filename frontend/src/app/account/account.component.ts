@@ -1,8 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../interfaces';
-import { ApiService } from '../api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -12,16 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AccountComponent {
   constructor(
-    private apiService: ApiService,
-    private router: Router,
-    private route: ActivatedRoute
+
   ) {}
 
-  Register() {
-    this.router.navigate(['../../../register']);
-  }
 
-  Login(){
-    this.router.navigate(['../../../login']);
-  }
 }

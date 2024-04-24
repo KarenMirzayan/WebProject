@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Brand } from '../interfaces';
+import { Brand } from '../models';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';

@@ -4,7 +4,6 @@ img {
 
 .category-products-holder {
   position: relative;
-  display: inline-block;
   margin-bottom: 20px;
   margin-right: 100px;
   display: flex;
@@ -22,10 +21,10 @@ img {
   border: none;
   position: absolute;
   top: 0;
-  right: 0;
   color: rgb(255, 164, 164);
   margin-top: 20px;
   right: 60%;
+  padding: 0;
 }
 
 .basket-button {
@@ -34,7 +33,6 @@ img {
   padding: 5px 10px;
   position: absolute;
   top: 0;
-  left: 0;
   color: rgb(255, 255, 255);
   margin-top: 20px;
   left: 10%;

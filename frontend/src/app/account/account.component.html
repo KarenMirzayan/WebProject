@@ -1,1 +1,34 @@
+<<<<<<< HEAD
+<div class="account-page">
+  <h1>Привет, {{this.user.first_name ? this.user.first_name : this.user.username}}!</h1>
+  <div *ngIf="!editMode" class="user-container">
+    <button (click)="edit()">Редактировать</button>
+    <p>Логин:   {{this.user.username}}</p>
+    <p>Имя:     {{this.user.first_name}}</p>
+    <p>Фамилия: {{this.user.last_name}}</p>
+    <p>Почта:   {{this.user.email}}</p>
+    <button (click)="logout()" class="logout-btn">Выйти</button>
+<!--    <button (click)="changePassword()">Изменить пароль</button>-->
+  </div>
+  <div *ngIf="editMode">
+    <form (ngSubmit)="updateUser()">
+      <label for="login">Логин:</label>
+      <input type="text" id="login" name="login" [(ngModel)]="username" required>
 
+<<<<<<< HEAD
+=======
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="firstName" required>
+
+      <label for="lastname">Фамилия:</label>
+      <input type="text" id="lastname" name="lastname" [(ngModel)]="lastName" required>
+
+      <label for="email">Почта:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+
+      <button type="submit">Save</button>
+      <button type="button" (click)="cancelEdit()">Отмена</button>
+    </form>
+  </div>
+</div>
+>>>>>>> 69350939120a339f55eb0bf480d2206aa4607d8b

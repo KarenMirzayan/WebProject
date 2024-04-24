@@ -187,11 +187,11 @@ def user_detail(request, id):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user = UserSerializer(user).update(user, validated_data=request.data)
+        user.save()
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -229,7 +229,6 @@ def view_cart(request):
 def add_to_cart(request):
     user = request.user
     product_id = request.data.get('product_id')
-    quantity = int(request.data.get('quantity', 1))
 
     try:
         product = Product.objects.get(pk=product_id)
@@ -238,9 +237,9 @@ def add_to_cart(request):
 
     cart_item, created = CartItem.objects.get_or_create(user=user, product=product)
     if not created:
-        cart_item.quantity += quantity
+        cart_item.quantity += 1
     else:
-        cart_item.quantity = quantity
+        cart_item.quantity = 1
     cart_item.save()
 
     serializer = CartItemSerializer(cart_item)
@@ -297,16 +296,15 @@ class WishlistListView(APIView):
             product = Product.objects.get(pk=product_id)
         except Product.DoesNotExist:
             return Response({"message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+        wishlist_item = WishlistItem.objects.create(user=user, product=product)
+        wishlist_item.save()
 
-        cart_item, created = CartItem.objects.create(user=user, product=product)
-        cart_item.save()
-
-        serializer = CartItemSerializer(cart_item)
+        serializer = WishlistItemSerializer(wishlist_item)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class WishlistDetailView(APIView):
-    permission_classes([IsAuthenticated,])
+    permission_classes([IsAuthenticated, ])
 
     def get(self, request, product_id):
         user = request.user
@@ -319,3 +317,23 @@ class WishlistDetailView(APIView):
         wishlist_item = WishlistItem.objects.get(user=user, product_id=product_id)
         wishlist_item.delete()
         return JsonResponse({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def change_password(request):
+    user = request.user
+    data = request.data
+
+    old_password = data.get('old_password')
+    if not user.check_password(old_password):
+        return Response({'error': 'Invalid old password'}, status=status.HTTP_400_BAD_REQUEST)
+
+    new_password = data.get('new_password')
+    confirm_new_password = data.get('confirm_password')
+    if new_password != confirm_new_password:
+        return Response({'error': 'New passwords do not match'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user.set_password(new_password)
+    user.save()
+
+    return Response({'message': 'Password successfully changed'}, status=status.HTTP_200_OK)

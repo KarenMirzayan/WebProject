@@ -24,10 +24,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { SearchComponent } from './search/search.component';
 import { SearchpageComponent } from './searchpage/searchpage.component';
 import {CartComponent} from "./cart/cart.component";
+import {ChangePasswordComponent} from "./change-password/change-password.component";
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'account', component: AccountComponent },
+  // { path: 'password', component: ChangePasswordComponent},
   { path: 'wishlist', component: WishlistComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

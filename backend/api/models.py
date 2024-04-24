@@ -30,7 +30,12 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
 class WishlistItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        # Enforce uniqueness on the pair (product, user)
+        unique_together = ('product', 'user')

@@ -35,14 +35,22 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'is_superuser']
-        extra_kwargs = {'password': {'write_only': True}}  # Make password write-only
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'is_superuser': {'read_only': True}
+        }
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+    def update(self, instance, validated_data):
+        validated_data['password'] = instance.password
+        return super().update(instance, validated_data)
 
 
 class CartItemSerializer(serializers.ModelSerializer):

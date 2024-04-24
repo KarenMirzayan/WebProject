@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../interfaces';
-import { WishlistItem } from '../models';
+import { Product } from '../models';
 import { ApiService } from '../api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WishlistService } from '../wishlist.service';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -19,7 +18,7 @@ export class ProductListComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private wishListService:WishlistService
+    private cartService:CartService
   ) {}
 
   ngOnInit() {
@@ -32,8 +31,9 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  addToCart() {}
+  addToCart(productId: number) {
+    this.cartService.addToCart(productId, 1).subscribe()
+  }
 
-  addToWishlist(){}
-    
+  addToWishlist() {}
 }

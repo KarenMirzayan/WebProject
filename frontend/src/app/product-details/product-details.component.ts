@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Product } from '../interfaces';
-import { WishlistItem } from '../models';
-import { WishlistService } from '../wishlist.service';
+import { Product } from '../models';
 
 @Component({
   selector: 'app-product-details',
@@ -20,8 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router,
-    private wishListService: WishlistService
+    private router: Router
   ) {}
 
   ngOnInit(): void {

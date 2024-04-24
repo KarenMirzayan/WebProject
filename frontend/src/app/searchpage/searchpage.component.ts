@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Product } from '../interfaces';
+import { Product } from '../models';
 import {ActivatedRoute, RouterModule} from '@angular/router';
 import { CommonModule} from '@angular/common';
 import { SearchComponent } from '../search/search.component';

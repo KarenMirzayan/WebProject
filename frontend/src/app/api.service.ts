@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Brand, Category, Product } from './interfaces';
+import { Brand, Category, Product } from './models';
 import { map } from 'rxjs/operators';
 
 
@@ -69,6 +69,6 @@ export class ApiService {
         }
       })
     );
-  } 
-  /*щя добавлю чтобы перебрасывало на еррор если ниче не найдет*/ 
+  }
+  /*щя добавлю чтобы перебрасывало на еррор если ниче не найдет*/
 }

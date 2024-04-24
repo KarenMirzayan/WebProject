@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Product } from '../interfaces';
+import { Product } from '../models';
 
 @Component({
   selector: 'app-product-details',

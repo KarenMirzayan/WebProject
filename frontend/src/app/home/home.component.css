@@ -1,84 +1,176 @@
 .image-fader {
-    width: 1350px;
-    height: 550px;
-    position: relative;
-    overflow: hidden;
-  }
+  width: 1350px;
+  height: 550px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
 
-  .image-fader img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.image-fader img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation-name: imagefade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+}
+
+.fader-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes imagefade {
+  0% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  25% {
     opacity: 0;
-    animation-name: imagefade;
-    animation-timing-function:ease-in-out;
-    animation-iteration-count: infinite;
-    animation-duration: 6s; /* Total duration for each image */
   }
+  92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
-  @keyframes imagefade {
-    0% {
-      opacity:1;
-    }
-    17% {
-      opacity:1;
-    }
-    25% {
-      opacity:0;
-    }
-    92% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-  }
+.image-fader img:nth-of-type(1) {
+  animation-delay: 6s;
+}
 
-  .image-fader img:nth-of-type(1) {
-    animation-delay: 6s;
-  }
-  .image-fader img:nth-of-type(2) {
-    animation-delay: 4s;
-  }
-  .image-fader img:nth-of-type(3) {
-    animation-delay: 2s;
-  }
-  .image-fader img:nth-of-type(4) {   
-    animation-delay: 0;
-  }
+.image-fader img:nth-of-type(2) {
+  animation-delay: 4s;
+}
 
-  .discount{
-    color: red;
-  }
- 
-  
-  .product-line {
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.image-fader img:nth-of-type(3) {
+  animation-delay: 2s;
+}
 
-  }
-  .product-line img {
-    object-fit:contain;
-    height:250px;
-    width:150px;
-  }
-  
-  
- h3 {
-    text-align: center;
-    font-size: 16px;
- 
-  }
-  
-  .product-line p {
-    font-size: 14px;
-  }
-  
+.image-fader img:nth-of-type(4) {
+  animation-delay: 0s;
+}
+
+.discount {
+  color: red;
+}
+
+
+.product-line {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.product-line img {
+  object-fit: contain;
+  height: 250px;
+  width: 150px;
+}
+
+
+h3 {
+  text-align: center;
+  font-size: 16px;
+
+}
+
+.product-line p {
+  font-size: 14px;
+}
+
+img {
+  height: 300px;
+}
+
+.category-products-holder {
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 75%;
+  margin-bottom: 20px;
+}
+
+.heart-button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  color: rgb(255, 164, 164);
+  margin-top: 20px;
+  right: 60%;
+  padding: 0;
+}
+
+.basket-button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  position: absolute;
+  top: 0;
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+  left: 10%;
+}
+
+.heart-button:hover path {
+  fill: red;
+}
+
+.heart-button svg {
+  width: 100%;
+  height: 100%;
+  margin-top: 27px;
+  margin-left: 13px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle:hover {
+  background-color: rgb(250, 207, 154);
+}
+
+.circle2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle2:hover {
+  background-color: rgb(250, 207, 154);
+}
+
+

@@ -4,36 +4,79 @@ img {
   margin: 0px 30px;
 }
 
+.product-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .product-holder {
   position: relative;
-  display: inline-block;
   margin-bottom: 20px;
   margin-right: 100px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.buttons {
-  margin-top: 10px;
-}
 
-button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  margin: 10px;
+
+.heart-button {
+  background-color: transparent;
   border: none;
-  cursor: pointer;
-}
-
-.basket-button:hover,
-.heart-button:hover {
-  background-color: rgb(250, 207, 154);
+  color: rgb(255, 164, 164);
+  margin-top: 20px;
+  padding: 0;
 }
 
 .basket-button {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 17px;
-  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+}
+
+.heart-button:hover path {
+  fill: red;
+}
+
+.heart-button svg {
+  width: 100%;
+  height: 100%;
+  margin-top: 27px;
+  margin-left: 13px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle:hover {
+  background-color: rgb(250, 207, 154);
+}
+
+.circle2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle2:hover {
+  background-color: rgb(250, 207, 154);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
 }

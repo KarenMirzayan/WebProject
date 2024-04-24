@@ -1,17 +1,21 @@
 * {
   font-family: "Courier New", Courier, monospace;
 }
-header:hover{
-  opacity:0.9;
-  cursor:pointer;
+
+header:hover {
+  opacity: 0.9;
+  cursor: pointer;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 footer {
   background-color: rgb(209, 200, 200);
+  padding-left: 20px;
 }
 
 .row2 {
@@ -59,9 +63,26 @@ footer {
   margin-bottom: 5px;
 }
 
-.main{
-  margin:0 auto;
+.main {
+  margin: 0 auto;
 }
- .wishlist, .search, .account{
-  margin-right:20px;
+
+.wishlist, .search, .account {
+  margin-right: 30px;
+}
+
+#copyright {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+#main-button {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.useful-links{
+
 }

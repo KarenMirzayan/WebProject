@@ -22,6 +22,7 @@ urlpatterns = [
     path('register', views.user_register, name='user_register'),
     path('users/<int:id>', views.user_detail, name='user_detail'),  # GET, PUT
     path('users/<str:username>', views.user_get_by_username, name='user_get_by_username'),
+    # path('users/password', views.change_password, name='change_password'),
 
     path('login', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Tokens
     path('refresh', TokenRefreshView.as_view(), name='token_refresh'),
@@ -31,6 +32,6 @@ urlpatterns = [
     path('cart/item/<int:id>/', views.update_cart_item, name='update_cart_item'),
     path('cart/item/<int:id>/remove/', views.remove_from_cart, name='remove_from_cart'),
 
-    path('wishlist/', views.WishlistListView.as_view(), name='wishlist_list'),
-    path('wishlist/<int:product_id>/', views.WishlistDetailView.as_view(), name='wishlist_detail')
+    path('wishlist/', views.WishlistListView.as_view(), name='wishlist_list'),  # GET, POST
+    path('wishlist/<int:product_id>/', views.WishlistDetailView.as_view(), name='wishlist_detail')  # GET, DELETE
 ]

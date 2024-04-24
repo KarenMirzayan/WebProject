@@ -9,8 +9,8 @@ export interface User {
   id: number;
   email: string;
   username: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   is_superuser: boolean;
 }
 
@@ -23,5 +23,10 @@ export interface CartItem {
 export interface WishlistItem {
   id: number;
   product: Product;
+}
 
+export interface Password {
+  old_password: string;
+  new_password: string;
+  confirm_password: string;
 }

@@ -46,4 +46,15 @@
     animation-delay: 2s;
   }
   .image-fader img:nth-of-type(4) {
+<<<<<<< HEAD
+    animation-delay: 0;
   }
+
+  .product-line{
+    display:flex;
+    
+  }
+=======
+    animation-delay: 0s;
+  }
+>>>>>>> 6e12211238887d5778b8ca2a5825ca475b69cf2f

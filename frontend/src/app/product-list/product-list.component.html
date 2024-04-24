@@ -5,7 +5,7 @@
     <p>{{ product.price }}</p>
   </div>
 
-  <button class="heart-button" (onclick)="addToWishlist()">
+  <button class="heart-button" (click)="addToWishlist(product.id)">
     <div class="circle">
       <svg>
         <path
@@ -17,7 +17,7 @@
     </div>
   </button>
 
-  <button class="basket-button">
+  <button class="basket-button" (click)="addToCart(product.id)">
     <div class="circle2">
       <svg width="21" height="22">
         <path

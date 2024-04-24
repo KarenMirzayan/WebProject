@@ -229,7 +229,6 @@ def view_cart(request):
 def add_to_cart(request):
     user = request.user
     product_id = request.data.get('product_id')
-    quantity = int(request.data.get('quantity', 1))
 
     try:
         product = Product.objects.get(pk=product_id)
@@ -238,9 +237,9 @@ def add_to_cart(request):
 
     cart_item, created = CartItem.objects.get_or_create(user=user, product=product)
     if not created:
-        cart_item.quantity += quantity
+        cart_item.quantity += 1
     else:
-        cart_item.quantity = quantity
+        cart_item.quantity = 1
     cart_item.save()
 
     serializer = CartItemSerializer(cart_item)
@@ -297,11 +296,10 @@ class WishlistListView(APIView):
             product = Product.objects.get(pk=product_id)
         except Product.DoesNotExist:
             return Response({"message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+        wishlist_item = WishlistItem.objects.create(user=user, product=product)
+        wishlist_item.save()
 
-        cart_item, created = CartItem.objects.create(user=user, product=product)
-        cart_item.save()
-
-        serializer = CartItemSerializer(cart_item)
+        serializer = WishlistItemSerializer(wishlist_item)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

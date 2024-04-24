@@ -6,7 +6,7 @@
     <p>Имя:     {{this.user.first_name}}</p>
     <p>Фамилия: {{this.user.last_name}}</p>
     <p>Почта:   {{this.user.email}}</p>
-    <button (click)="logout()">Выйти</button>
+    <button (click)="logout()" class="logout-btn">Выйти</button>
 <!--    <button (click)="changePassword()">Изменить пароль</button>-->
   </div>
   <div *ngIf="editMode">

@@ -16,8 +16,8 @@ export class WishlistService {
     return this.http.get<WishlistItem[]>(this.BASE_URL);
   }
 
-  add_item(item: WishlistItem): Observable<WishlistItem> {
-    return this.http.post<WishlistItem>(this.BASE_URL, item);
+  add_item(product_id: number): Observable<WishlistItem> {
+    return this.http.post<WishlistItem>(this.BASE_URL, {product_id});
   }
 
   delete_item(product_id: number): Observable<any> {

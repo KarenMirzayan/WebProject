@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-
-import { Component } from '@angular/core';
-
-=======
 import {Component} from '@angular/core';
 import {User} from "../models";
 import {UserService} from "../user.service";
 import {Router} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
->>>>>>> 69350939120a339f55eb0bf480d2206aa4607d8b
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -18,13 +12,6 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './account.component.css'
 })
 export class AccountComponent {
-<<<<<<< HEAD
-  constructor(
-
-  ) {}
-
-
-=======
   user: User;
   editMode: boolean = false;
   username: string;
@@ -88,5 +75,4 @@ export class AccountComponent {
     this.userService.logout();
     this.router.navigate(['/login']);
   }
->>>>>>> 69350939120a339f55eb0bf480d2206aa4607d8b
 }

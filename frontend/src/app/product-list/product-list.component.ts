@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models';
 import { ApiService } from '../api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service';
+import {CartService} from "../cart.service";
+import {WishlistService} from "../wishlist.service";
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -18,7 +19,8 @@ export class ProductListComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private cartService:CartService
+    private cartService: CartService,
+    private wishlistService: WishlistService,
   ) {}
 
   ngOnInit() {
@@ -35,5 +37,7 @@ export class ProductListComponent implements OnInit {
     this.cartService.addToCart(productId, 1).subscribe()
   }
 
-  addToWishlist() {}
+  addToWishlist(productId: number) {
+    this.wishlistService.add_item(productId).subscribe()
+  }
 }

@@ -34,11 +34,6 @@ export class ProductListComponent implements OnInit {
 
   addToCart() {}
 
-  addToWishlist(product: Product): void {
-    const wishlistItem: WishlistItem = { id: product.id, product: product}; 
-    this.wishListService.add_item(wishlistItem).subscribe((addedItem: WishlistItem) => {
-      console.log('Item added to wishlist:', addedItem);
-    });
-  }
-  
+  addToWishlist(){}
+    
 }

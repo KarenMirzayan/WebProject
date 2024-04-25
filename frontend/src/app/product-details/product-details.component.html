@@ -1,9 +1,11 @@
 <div class="product-detail">
   <div class="product-holder">
-    <img src="{{ product.image }}" alt="product-image" width="200px"/>
+    <img src="{{ product.image }}" alt="product-image" width="200px" />
     <h3>{{ product.name }}</h3>
     <p>Цена: {{ product.price }}</p>
     <p>СКИДКА: {{ product.discount }}</p>
+    <p *ngIf="brandName">БРЕНД: {{ brandName }}</p>
+
     <div class="buttons">
       <button class="heart-button" (click)="addToWishlist(product.id)">
         <div class="circle">
